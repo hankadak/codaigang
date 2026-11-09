@@ -9,13 +9,12 @@
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased font-sans pb-24">
 
-    <!-- Header -->
+    <!-- Header (Logo Image Applied) -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
-        <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="max-w-md mx-auto px-4 py-2 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-xl shadow-md border-2 border-blue-400">
-                    C
-                </div>
+                <!-- 로고 이미지 적용 -->
+                <img src="logo.png" alt="코대장 로고" class="w-12 h-12 object-contain rounded-xl border border-slate-100 shadow-sm">
                 <div>
                     <h1 class="font-extrabold text-lg text-slate-900 leading-tight">코대장</h1>
                     <p class="text-[11px] text-blue-600 font-semibold tracking-tight">코스트코 대신 장보기 (codaigang)</p>
@@ -86,7 +85,7 @@
             <div class="bg-white p-3.5 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-between">
                 <div class="flex-1 pr-3">
                     <div class="flex items-center space-x-1.5">
-                        <span class="font-bold text-sm text-slate-800">커클랜드 프리미엄 화장지 (30롤)</span>
+                        <span class="font-bold text-sm text-slate-800">프리미엄 화장지 (30롤)</span>
                         <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-1.5 py-0.5 rounded">부피상품</span>
                     </div>
                     <p class="text-xs text-slate-500 mt-0.5">23,990원 <span class="text-[10px] text-slate-400">(부피추가금 +2,000원)</span></p>
@@ -272,22 +271,18 @@
             let subtotal = 0;
             let bulkyCount = 0;
 
-            // Standard Items
             Object.keys(cart).forEach(id => {
                 subtotal += cart[id].price * cart[id].qty;
                 if (cart[id].isBulky) bulkyCount += cart[id].qty;
             });
 
-            // Custom Items
             customCart.forEach(item => {
                 subtotal += item.price;
             });
 
-            // Fee: 10%, minimum 5,000 KRW
             let fee = Math.round(subtotal * 0.1);
             if (fee < 5000) fee = 5000;
 
-            // Delivery Fee
             const region = document.querySelector('input[name="region"]:checked').value;
             let baseDelivery = 5000;
             if (region === 'geochang') baseDelivery = 8000;
@@ -346,10 +341,12 @@
             msg += `--------------------------\n`;
             msg += `입금 완료 후 이 메시지를 카카오톡으로 보내주시면 주문이 확정됩니다!`;
 
-            // Copy order text to clipboard and open KakaoTalk / Share
             navigator.clipboard.writeText(msg);
             alert('주문 양식이 복사되었습니다! 카카오톡 채팅창에 붙여넣어 전송해 주세요.');
         }
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
