@@ -62,4 +62,353 @@
             <div class="grid grid-cols-3 gap-2 text-xs">
                 <label class="cursor-pointer">
                     <input type="radio" name="region" value="daegu" class="peer hidden" checked onchange="calculateTotal()">
-                    <div class="p-2.5 text-center rounded-xl border border-slate-200 peer-checked:border-blue-600 peer-checked:bg-blue-50 peer-checked:text
+                    <div class="p-2.5 text-center rounded-xl border border-slate-200 peer-checked:border-blue-600 peer-checked:bg-blue-50 peer-checked:text-blue-700 font-bold transition">
+                        <div>대구 전역</div>
+                        <div class="text-[10px] font-normal text-slate-500 peer-checked:text-blue-600 mt-0.5">5,000원</div>
+                    </div>
+                </label>
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="geochang" class="peer hidden" onchange="calculateTotal()">
+                    <div class="p-2.5 text-center rounded-xl border border-slate-200 peer-checked:border-blue-600 peer-checked:bg-blue-50 peer-checked:text-blue-700 font-bold transition">
+                        <div>거창 · 함양</div>
+                        <div class="text-[10px] font-normal text-slate-500 peer-checked:text-blue-600 mt-0.5">8,000원 (금)</div>
+                    </div>
+                </label>
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="pickup" class="peer hidden" onchange="calculateTotal()">
+                    <div class="p-2.5 text-center rounded-xl border border-slate-200 peer-checked:border-blue-600 peer-checked:bg-blue-50 peer-checked:text-blue-700 font-bold transition">
+                        <div>지정 픽업존</div>
+                        <div class="text-[10px] font-normal text-slate-500 peer-checked:text-blue-600 mt-0.5">3,000원</div>
+                    </div>
+                </label>
+            </div>
+        </section>
+
+        <!-- Category Filter Tabs -->
+        <div class="flex space-x-2 overflow-x-auto no-scrollbar py-1">
+            <button onclick="filterCategory('all')" class="cat-btn active bg-blue-600 text-white font-bold text-xs px-3.5 py-1.5 rounded-full whitespace-nowrap shadow-sm">전체보기</button>
+            <button onclick="filterCategory('fresh')" class="cat-btn bg-white text-slate-600 border border-slate-200 font-bold text-xs px-3.5 py-1.5 rounded-full whitespace-nowrap">🥦 신선/냉장</button>
+            <button onclick="filterCategory('processed')" class="cat-btn bg-white text-slate-600 border border-slate-200 font-bold text-xs px-3.5 py-1.5 rounded-full whitespace-nowrap">🍗 가공/간편식</button>
+            <button onclick="filterCategory('life')" class="cat-btn bg-white text-slate-600 border border-slate-200 font-bold text-xs px-3.5 py-1.5 rounded-full whitespace-nowrap">🧻 생필품/기타</button>
+        </div>
+
+        <!-- Product List -->
+        <section class="space-y-3">
+            <div class="product-item life bg-white p-3 rounded-2xl shadow-sm border border-slate-200 flex items-center space-x-3">
+                <img src="https://images.unsplash.com/photo-1584556812952-905ffd0c611a?w=300&auto=format&fit=crop&q=80" alt="화장지" class="w-20 h-20 object-cover rounded-xl border border-slate-100 shrink-0">
+                <div class="flex-1 min-w-0">
+                    <span class="font-bold text-sm text-slate-800 truncate block">커클랜드 프리미엄 화장지 (30롤)</span>
+                    <span class="inline-block bg-amber-100 text-amber-800 text-[10px] font-bold px-1.5 py-0.2 rounded mt-0.5">부피상품 (+2,000)</span>
+                    <p class="text-sm font-extrabold text-blue-600 mt-1">23,990원</p>
+                </div>
+                <div class="flex items-center space-x-1.5 shrink-0">
+                    <button onclick="updateQty('item1', -1, 23990, true)" class="w-7 h-7 rounded-lg bg-slate-100 font-bold text-slate-600 hover:bg-slate-200 active:scale-95 transition">-</button>
+                    <span id="qty-item1" class="w-5 text-center font-bold text-sm">0</span>
+                    <button onclick="updateQty('item1', 1, 23990, true)" class="w-7 h-7 rounded-lg bg-blue-600 font-bold text-white hover:bg-blue-700 active:scale-95 transition">+</button>
+                </div>
+            </div>
+
+            <div class="product-item fresh bg-white p-3 rounded-2xl shadow-sm border border-slate-200 flex items-center space-x-3">
+                <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=300&auto=format&fit=crop&q=80" alt="연어" class="w-20 h-20 object-cover rounded-xl border border-slate-100 shrink-0">
+                <div class="flex-1 min-w-0">
+                    <span class="font-bold text-sm text-slate-800 truncate block">생연어 횟감용 (약 1kg)</span>
+                    <span class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-1.5 py-0.2 rounded mt-0.5">신선 보냉배송</span>
+                    <p class="text-sm font-extrabold text-blue-600 mt-1">39,990원</p>
+                </div>
+                <div class="flex items-center space-x-1.5 shrink-0">
+                    <button onclick="updateQty('item2', -1, 39990, false)" class="w-7 h-7 rounded-lg bg-slate-100 font-bold text-slate-600 hover:bg-slate-200 active:scale-95 transition">-</button>
+                    <span id="qty-item2" class="w-5 text-center font-bold text-sm">0</span>
+                    <button onclick="updateQty('item2', 1, 39990, false)" class="w-7 h-7 rounded-lg bg-blue-600 font-bold text-white hover:bg-blue-700 active:scale-95 transition">+</button>
+                </div>
+            </div>
+
+            <div class="product-item processed bg-white p-3 rounded-2xl shadow-sm border border-slate-200 flex items-center space-x-3">
+                <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=300&auto=format&fit=crop&q=80" alt="닭가슴살" class="w-20 h-20 object-cover rounded-xl border border-slate-100 shrink-0">
+                <div class="flex-1 min-w-0">
+                    <span class="font-bold text-sm text-slate-800 truncate block">수지스 그릴드 닭가슴살 (1kg)</span>
+                    <span class="inline-block bg-slate-100 text-slate-600 text-[10px] font-bold px-1.5 py-0.2 rounded mt-0.5">인기 베스트</span>
+                    <p class="text-sm font-extrabold text-blue-600 mt-1">17,490원</p>
+                </div>
+                <div class="flex items-center space-x-1.5 shrink-0">
+                    <button onclick="updateQty('item3', -1, 17490, false)" class="w-7 h-7 rounded-lg bg-slate-100 font-bold text-slate-600 hover:bg-slate-200 active:scale-95 transition">-</button>
+                    <span id="qty-item3" class="w-5 text-center font-bold text-sm">0</span>
+                    <button onclick="updateQty('item3', 1, 17490, false)" class="w-7 h-7 rounded-lg bg-blue-600 font-bold text-white hover:bg-blue-700 active:scale-95 transition">+</button>
+                </div>
+            </div>
+
+            <div class="product-item processed bg-white p-3 rounded-2xl shadow-sm border border-slate-200 flex items-center space-x-3">
+                <img src="https://images.unsplash.com/photo-1585478259715-876acc5be8eb?w=300&auto=format&fit=crop&q=80" alt="베이글" class="w-20 h-20 object-cover rounded-xl border border-slate-100 shrink-0">
+                <div class="flex-1 min-w-0">
+                    <span class="font-bold text-sm text-slate-800 truncate block">신선 베이글 (2팩 선택)</span>
+                    <span class="inline-block bg-slate-100 text-slate-600 text-[10px] font-bold px-1.5 py-0.2 rounded mt-0.5">플레인/어니언/블루베리</span>
+                    <p class="text-sm font-extrabold text-blue-600 mt-1">11,990원</p>
+                </div>
+                <div class="flex items-center space-x-1.5 shrink-0">
+                    <button onclick="updateQty('item4', -1, 11990, false)" class="w-7 h-7 rounded-lg bg-slate-100 font-bold text-slate-600 hover:bg-slate-200 active:scale-95 transition">-</button>
+                    <span id="qty-item4" class="w-5 text-center font-bold text-sm">0</span>
+                    <button onclick="updateQty('item4', 1, 11990, false)" class="w-7 h-7 rounded-lg bg-blue-600 font-bold text-white hover:bg-blue-700 active:scale-95 transition">+</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Item Order -->
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+            <h3 class="font-bold text-sm text-slate-900 flex items-center">
+                <i class="fa-solid fa-cart-plus text-blue-600 mr-2"></i>목록에 없는 상품 직접 입력
+            </h3>
+            <div class="space-y-2">
+                <input type="text" id="custom-name" placeholder="상품명 (예: 델몬트 바나나 1송이)" class="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600">
+                <div class="flex space-x-2">
+                    <input type="number" id="custom-price" placeholder="예상 가격(원)" class="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600">
+                    <button onclick="addCustomItem()" class="bg-slate-900 text-white text-xs font-bold px-4 rounded-xl hover:bg-black transition whitespace-nowrap">추가</button>
+                </div>
+            </div>
+            <div id="custom-list" class="space-y-1.5 pt-1"></div>
+        </section>
+
+        <!-- Customer Form -->
+        <section class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+            <h3 class="font-bold text-sm text-slate-900 flex items-center">
+                <i class="fa-solid fa-user-pen text-blue-600 mr-2"></i>주문자 & 배송지 정보
+            </h3>
+            <div class="space-y-2 text-xs">
+                <input type="text" id="cust-name" placeholder="주문자 성함" class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600">
+                <input type="tel" id="cust-phone" placeholder="연락처 (예: 010-1234-5678)" class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600">
+                <input type="text" id="cust-address" placeholder="배송 주소 (상세주소 포함)" class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600">
+                
+                <div class="pt-2 border-t border-slate-100">
+                    <label class="block font-semibold text-slate-700 mb-1">현금영수증 발급 선택</label>
+                    <div class="flex space-x-4 mb-2">
+                        <label class="flex items-center space-x-1 cursor-pointer">
+                            <input type="radio" name="receipt" value="personal" checked class="text-blue-600">
+                            <span>개인소득공제</span>
+                        </label>
+                        <label class="flex items-center space-x-1 cursor-pointer">
+                            <input type="radio" name="receipt" value="business" class="text-blue-600">
+                            <span>사업자지출증빙</span>
+                        </label>
+                    </div>
+                    <input type="text" id="receipt-num" placeholder="발급용 휴대폰 번호 / 사업자번호" class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600">
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Info -->
+        <section class="bg-blue-50 p-4 rounded-2xl border border-blue-200 space-y-2 mb-10">
+            <div class="flex justify-between items-center text-xs">
+                <span class="font-bold text-blue-900">무통장 입금 안내</span>
+                <span class="text-blue-600 font-bold">예금주: 코대장</span>
+            </div>
+            <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-blue-100 shadow-sm">
+                <span class="font-mono font-bold text-slate-800 text-sm">농협 351-XXXX-XXXX-XX</span>
+                <button onclick="copyAccount()" class="text-xs bg-blue-100 text-blue-700 font-bold px-3 py-1 rounded-lg hover:bg-blue-200 transition">복사</button>
+            </div>
+            <p class="text-[11px] text-blue-700">※ 주문서 전달 후 입금이 확인되면 구매대행이 확정됩니다.</p>
+        </section>
+    </main>
+
+    <!-- Bottom Sticky Bar -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 z-40 shadow-2xl">
+        <div class="max-w-md mx-auto space-y-2">
+            <div class="space-y-0.5 text-xs">
+                <div class="flex justify-between text-slate-500">
+                    <span>총 상품 금액:</span>
+                    <span id="price-subtotal">0원</span>
+                </div>
+                <div class="flex justify-between text-slate-500">
+                    <span>구매대행 수수료:</span>
+                    <span id="price-fee">5,000원</span>
+                </div>
+                <div class="flex justify-between text-slate-500">
+                    <span>배송비 (+부피추가금):</span>
+                    <span id="price-delivery">5,000원</span>
+                </div>
+                <div class="flex justify-between font-extrabold text-base text-slate-900 pt-1 border-t border-slate-100">
+                    <span>최종 입금 예정 금액:</span>
+                    <span id="price-total" class="text-blue-600 text-lg">10,000원</span>
+                </div>
+            </div>
+
+            <button onclick="sendOrder()" class="w-full bg-yellow-400 hover:bg-yellow-500 text-slate-950 font-black py-3.5 rounded-xl shadow-lg active:scale-[0.99] transition flex items-center justify-center space-x-2 text-sm">
+                <i class="fa-solid fa-comment text-slate-950 text-base"></i>
+                <span>카카오톡 주문 전송 + 구글 시트 저장</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHFl6z_rlVEBfvc92iXGvgegO-BeUpHHIdoNY5CnV8z4V00JALFO265sZuSjXGSizk/exec";
+
+        const cart = {};
+        const customCart = [];
+        const itemNames = {
+            'item1': '화장지(30롤)',
+            'item2': '생연어(1kg)',
+            'item3': '닭가슴살(1kg)',
+            'item4': '베이글(2팩)'
+        };
+
+        function filterCategory(category) {
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            });
+            event.target.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            event.target.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
+
+            document.querySelectorAll('.product-item').forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function updateQty(id, change, price, isBulky) {
+            if (!cart[id]) cart[id] = { qty: 0, price: price, isBulky: isBulky };
+            cart[id].qty += change;
+            if (cart[id].qty <= 0) {
+                delete cart[id];
+                document.getElementById(`qty-${id}`).innerText = 0;
+            } else {
+                document.getElementById(`qty-${id}`).innerText = cart[id].qty;
+            }
+            calculateTotal();
+        }
+
+        function addCustomItem() {
+            const name = document.getElementById('custom-name').value.trim();
+            const price = parseInt(document.getElementById('custom-price').value) || 0;
+            if (!name || price <= 0) {
+                alert('상품명과 예상 가격을 입력해 주세요.');
+                return;
+            }
+            customCart.push({ name, price });
+            document.getElementById('custom-name').value = '';
+            document.getElementById('custom-price').value = '';
+            renderCustomList();
+            calculateTotal();
+        }
+
+        function removeCustomItem(index) {
+            customCart.splice(index, 1);
+            renderCustomList();
+            calculateTotal();
+        }
+
+        function renderCustomList() {
+            const container = document.getElementById('custom-list');
+            container.innerHTML = '';
+            customCart.forEach((item, idx) => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 p-2 rounded-lg text-xs border border-slate-100">
+                        <span>📌 ${item.name} (${item.price.toLocaleString()}원)</span>
+                        <button onclick="removeCustomItem(${idx})" class="text-red-500 font-bold px-1.5">✕</button>
+                    </div>
+                `;
+            });
+        }
+
+        let currentSubtotal = 0;
+        let currentFee = 5000;
+        let currentDelivery = 5000;
+        let currentTotal = 10000;
+
+        function calculateTotal() {
+            let subtotal = 0, bulkyCount = 0;
+            Object.keys(cart).forEach(id => {
+                subtotal += cart[id].price * cart[id].qty;
+                if (cart[id].isBulky) bulkyCount += cart[id].qty;
+            });
+            customCart.forEach(item => subtotal += item.price);
+
+            let fee = Math.round(subtotal * 0.1);
+            if (fee < 5000 && subtotal > 0) fee = 5000;
+            if (subtotal === 0) fee = 5000;
+
+            const region = document.querySelector('input[name="region"]:checked').value;
+            let baseDelivery = 5000;
+            if (region === 'geochang') baseDelivery = 8000;
+            if (region === 'pickup') baseDelivery = 3000;
+
+            const bulkyFee = bulkyCount * 2000;
+            const totalDelivery = baseDelivery + bulkyFee;
+            const grandTotal = subtotal + fee + totalDelivery;
+
+            currentSubtotal = subtotal;
+            currentFee = fee;
+            currentDelivery = totalDelivery;
+            currentTotal = grandTotal;
+
+            document.getElementById('price-subtotal').innerText = subtotal.toLocaleString() + '원';
+            document.getElementById('price-fee').innerText = fee.toLocaleString() + '원';
+            document.getElementById('price-delivery').innerText = totalDelivery.toLocaleString() + '원' + (bulkyFee > 0 ? ` (+부피)` : '');
+            document.getElementById('price-total').innerText = grandTotal.toLocaleString() + '원';
+        }
+
+        function copyAccount() {
+            navigator.clipboard.writeText('농협 351-XXXX-XXXX-XX');
+            alert('입금 계좌번호가 복사되었습니다!');
+        }
+
+        function sendOrder() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            const receiptNum = document.getElementById('receipt-num').value.trim();
+            const regionElem = document.querySelector('input[name="region"]:checked').parentElement.textContent.trim();
+
+            if (!name || !phone || !address) {
+                alert('주문자 성함, 연락처, 배송 주소를 입력해 주세요.');
+                return;
+            }
+
+            let itemList = [];
+            Object.keys(cart).forEach(id => itemList.push(`${itemNames[id]}x${cart[id].qty}`));
+            customCart.forEach(item => itemList.push(`[요청]${item.name}`));
+
+            if (itemList.length === 0) {
+                alert('최소 1개 이상의 상품을 선택해 주세요.');
+                return;
+            }
+
+            const itemsStr = itemList.join(', ');
+
+            if (GOOGLE_SCRIPT_URL) {
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        phone: phone,
+                        address: address,
+                        region: regionElem,
+                        items: itemsStr,
+                        subtotal: currentSubtotal,
+                        fee: currentFee,
+                        delivery: currentDelivery,
+                        totalPrice: currentTotal,
+                        receipt: receiptNum || '미신청',
+                        timestamp: new Date().toLocaleString('ko-KR')
+                    })
+                }).catch(err => console.error("Google Sheet Error:", err));
+            }
+
+            let msg = `[코대장 주문서]\n`;
+            msg += `--------------------------\n`;
+            msg += `• 주문자: ${name} (${phone})\n`;
+            msg += `• 배송지: ${address}\n\n`;
+            msg += `[주문 품목]\n${itemList.map(i => '- ' + i).join('\n')}\n\n`;
+            msg += `[결제 금액]: ${currentTotal.toLocaleString()}원\n`;
+            msg += `• 현금영수증: ${receiptNum ? receiptNum : '미신청'}\n`;
+            msg += `--------------------------\n`;
+            msg += `입금 완료 후 메시지를 보내주시면 주문이 확정됩니다!`;
+
+            navigator.clipboard.writeText(msg);
+            alert('구글 시트 매출 저장 완료 및 주문서 복사 완료!\n카카오톡 채팅창에 붙여넣어 주세요.');
+        }
+    </script>
+</body>
+</html>
